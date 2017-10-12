@@ -36,8 +36,8 @@ class Home extends Component {
 
       popUp= () => {
         Alert.alert(
-            'Alert Title',
-            'My Alert Msg',
+            'Please Select Your Language',
+            '',
             [
               { text: 'English', onPress: () => this._onSetLanguageToEnglish() },
               { text: 'Spanish', onPress: () => this._onSetLanguageToSpanish() }

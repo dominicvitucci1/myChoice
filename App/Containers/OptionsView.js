@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { List, ListItem, SearchBar } from 'react-native-elements';
 import { strings } from '../Utils/Strings';
+import { data } from '../Utils/OptionsData';
 
 class OptionsView extends Component {
     static navigationOptions = {
@@ -12,26 +13,12 @@ class OptionsView extends Component {
       constructor(props) {
         super(props);
      
-        this.state = {
-            data: [
-                { key: strings.intrauterine_device, id: 0 },
-                { key: strings.Implant, id: 1 },
-                { key: strings.birth_control_shot, id: 2 },
-                { key: strings.vaginal_ring, id: 3 },
-                { key: strings.Patch, id: 4 },
-                { key: strings.Pill, id: 5 },
-                { key: strings.Mini_Pill, id: 6 },
-                { key: strings.condom_male_and_female, id: 7 },
-                { key: strings.Spermicide, id: 8 },
-                { key: strings.sponge_with_spermicide, id: 9 },
-                { key: strings.emergency_contraception, id: 10 }
-            ]
-        };
+        this.state = { data };
     }
   
-    onPressItem= (id) => {
+    onPressItem= (id, key, uri) => {
         const { navigate } = this.props.navigation;
-        navigate('DetailView', { ID: id });
+        navigate('DetailView', { ID: id, Name: key, imageURI: uri });
     }
 
     renderSeparator = () => (
@@ -55,7 +42,7 @@ class OptionsView extends Component {
                     title={`${item.key}`}
                     titleStyle={styles.titleTextStyle}
                     containerStyle={styles.listItemStyle}
-                    onPress={() => this.onPressItem(item.id)}
+                    onPress={() => this.onPressItem(item.id, item.key, item.imageURI)}
                 />
                 )}
                 keyExtractor={item => item.key}

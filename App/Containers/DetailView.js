@@ -6,7 +6,7 @@ import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
 import { strings } from '../Utils/Strings';
 
-let Questions = [
+const Questions = [
     {
     title: 'First',
     content: 'Lorem ipsum...',
@@ -17,7 +17,8 @@ let Questions = [
   }
 ];
 
-let testPath = 'gs://mychoice-f9186.appspot.com/Condom-min.png';
+let titleLabel = '';
+let imageURI = '';
 
 class DetailView extends Component {
     
@@ -28,13 +29,40 @@ class DetailView extends Component {
           };
 
           componentWillMount= () => {
-            }
-
-
-            getImage(path) {
-                firebase.storage().refFromURL(path).getDownloadURL().then((url) => {
-                    this.setState({ img: { uri: url } });
-                });
+                if (this.props.navigation.state.params.ID === 0) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 1) {
+                titleLabel = this.props.navigation.state.params.Name;
+                imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 2) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 3) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 4) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 5) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 6) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 7) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 8) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 9) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                } else if (this.props.navigation.state.params.ID === 10) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                }
             }
 
           _renderHeader(section) {
@@ -58,12 +86,12 @@ class DetailView extends Component {
                 <View style={styles.mainBackgroud}>
                     <ScrollView style={styles.scrollStyle}>
                         <Text style={styles.titleStyle}>
-                            LABEL
+                            {titleLabel}
                         </Text>
 
                         <Image
                             style={styles.imageStyle}
-                            source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/Condom-min.png?alt=media&token=2670b555-4126-49e9-9f64-9919345c244a' }}
+                            source={{ uri: imageURI }}
                             indicator={ProgressBar}
                         />
 
@@ -99,10 +127,9 @@ class DetailView extends Component {
         },
 
         imageStyle: {
-            // resizeMode: 'contain',
-            // alignSelf: 'center',
             width: 300,
-            height: 300
+            height: 300,
+            marginBottom: 8
         },
     
         scrollStyle: {
