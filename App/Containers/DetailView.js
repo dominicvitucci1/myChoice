@@ -6,17 +6,7 @@ import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
 import { strings } from '../Utils/Strings';
 
-const Questions = [
-    {
-    title: 'First',
-    content: 'Lorem ipsum...',
-  },
-  {
-    title: 'Second',
-    content: 'Lorem ipsum...',
-  }
-];
-
+let Questions = [];
 let titleLabel = '';
 let imageURI = '';
 
@@ -32,36 +22,47 @@ class DetailView extends Component {
                 if (this.props.navigation.state.params.ID === 0) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 1) {
                 titleLabel = this.props.navigation.state.params.Name;
                 imageURI = this.props.navigation.state.params.imageURI;
+                Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 2) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 3) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 4) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 5) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 6) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 7) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 8) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 9) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 } else if (this.props.navigation.state.params.ID === 10) {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 }
             }
 
@@ -84,7 +85,7 @@ class DetailView extends Component {
         render() {
             return (
                 <View style={styles.mainBackgroud}>
-                    <ScrollView style={styles.scrollStyle}>
+                    <ScrollView style={styles.scrollStyle} contentContainerStyle={styles.wrapper}>
                         <Text style={styles.titleStyle}>
                             {titleLabel}
                         </Text>
@@ -129,12 +130,20 @@ class DetailView extends Component {
         imageStyle: {
             width: 300,
             height: 300,
-            marginBottom: 8
+            marginBottom: 8,
+            alignItems: 'center'
         },
     
         scrollStyle: {
             flex: 1,
-            padding: 8
+            padding: 8,
+            marginBottom: 8,
+            
+        },
+
+        wrapper: {
+            alignItems: 'center'
+            
         },
 
         content: {
