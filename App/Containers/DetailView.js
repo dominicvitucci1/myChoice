@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
-import * as firebase from 'firebase';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
-import { strings } from '../Utils/Strings';
+import { scale, moderateScale, verticalScale } from '../Utils/scaling';
+
 
 let Questions = [];
 let titleLabel = '';
@@ -77,7 +77,7 @@ class DetailView extends Component {
           _renderContent(section) {
             return (
               <View style={styles.content}>
-                <Text>{section.content}</Text>
+                <Text style={styles.contentText}>{section.content}</Text>
               </View>
             );
           }
@@ -120,24 +120,24 @@ class DetailView extends Component {
         titleStyle: {
             textAlign: 'center',
             color: '#fff',
-            fontSize: 32,
-            marginTop: 8,
-            marginLeft: 8,
-            marginRight: 8,
-            marginBottom: 8
+            fontSize: moderateScale(32),
+            marginTop: scale(8),
+            marginLeft: scale(8),
+            marginRight: scale(8),
+            marginBottom: scale(8)
         },
 
         imageStyle: {
-            width: 300,
-            height: 300,
-            marginBottom: 8,
+            width: moderateScale(300),
+            height: verticalScale(300),
+            marginBottom: scale(8),
             alignItems: 'center'
         },
     
         scrollStyle: {
             flex: 1,
-            padding: 8,
-            marginBottom: 8,
+            padding: scale(8),
+            marginBottom: scale(8),
             
         },
 
@@ -147,18 +147,29 @@ class DetailView extends Component {
         },
 
         content: {
-            padding: 20,
-            backgroundColor: '#fff',
+            padding: scale(20),
+            //backgroundColor: '#fff',
+            borderColor: 'white',
+            borderWidth: 1,
+          },
+
+          contentText: {
+            textAlign: 'left',
+            fontSize: moderateScale(16),
+            color: 'white'            
           },
 
           header: {
-            backgroundColor: '#F5FCFF',
-            padding: 10,
+            //backgroundColor: '#F5FCFF',
+            padding: scale(10),
+            borderColor: 'white',
+            borderWidth: 1,
           },
 
           headerText: {
             textAlign: 'left',
-            fontSize: 16,
+            fontSize: moderateScale(16),
             fontWeight: '500',
+            color: 'white'
           },
       });

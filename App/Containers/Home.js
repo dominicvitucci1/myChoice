@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Alert } from 'react-native';
 import I18n from 'react-native-i18n';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 import { strings } from '../Utils/Strings';
 
 class Home extends Component {
@@ -105,40 +106,40 @@ const styles = StyleSheet.create({
     mainBackgroud: {
       flex: 1,
       justifyContent: 'flex-start',
-      backgroundColor: '#996633'
+      backgroundColor: '#996633',
     },
 
     titleViewStyle: {
-        paddingTop: 10,
+        paddingTop: scale(10),
         backgroundColor: '#000'
     },
 
     titleStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 32
+        fontSize: moderateScale(32)
     },
 
     startTextViewStyle: {
         backgroundColor: '#000',
-        marginBottom: 8,
-        marginLeft: 8,
-        marginRight: 8
+        marginBottom: scale(8),
+        marginLeft: scale(8),
+        marginRight: scale(8)
     },
 
     startTextStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 20
+        fontSize: moderateScale(20)
     },
 
     logoViewStyle: {
         backgroundColor: '#000',
         justifyContent: 'center',
-        marginLeft: 8,
-        marginRight: 8,
-        marginTop: 15,
-        marginBottom: 40
+        marginLeft: scale(8),
+        marginRight: scale(8),
+        marginTop: scale(15),
+        marginBottom: scale(25)
 
     },
 
@@ -146,36 +147,36 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         justifyContent: 'center',
-        width: 280,
-        height: 40
+        width: moderateScale(280),
+        height: verticalScale(40)
     },
 
     cathyViewStyle: {
         backgroundColor: '#000',
         justifyContent: 'center',
-        marginLeft: 8,
-        marginRight: 8,
-        marginBottom: 40
+        marginLeft: scale(8),
+        marginRight: scale(8),
+        marginBottom: scale(25)
     },
 
     cathyImageStyle: {
         resizeMode: 'contain',
         alignSelf: 'center',
-        width: 320,
-        height: 240
+        width: moderateScale(320),
+        height: verticalScale(240)
     },
 
     buttonStyle: {
         borderRadius: 5,
-        marginLeft: 8,
-        marginRight: 8,
-        marginBottom: 15
+        marginLeft: scale(8),
+        marginRight: scale(8),
+        marginBottom: scale(15)
         },
 
     disclaimerTextViewStyle: {
         backgroundColor: '#000',
-        marginLeft: 8,
-        marginRight: 8
+        marginLeft: scale(8),
+        marginRight: scale(8),
     },
 
     disclaimerTextStyle: {

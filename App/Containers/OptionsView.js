@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { List, ListItem, SearchBar } from 'react-native-elements';
 import { strings } from '../Utils/Strings';
+import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 //import { data } from '../Utils/OptionsData';
 
 class OptionsView extends Component {
@@ -224,27 +225,27 @@ class OptionsView extends Component {
               questionSet: [
                 {
                 title: strings.what_are_barrier_methods,
-                content: 'Lorem ipsum...',
+                content: strings.Barrier_Methods_Are,
                     },
                 {
                 title: strings.which_barrier_methods_protect_me_from_sexually_transmitted_infections_stis,
-                content: 'Lorem ipsum...',
+                content: strings.Male_or_female_condoms_are,
                     },
                 {
                 title: strings.how_do_i_get_a_barrier_method,
-                content: 'Lorem ipsum...',
+                content: strings.bought_at_drug_stores,
                     },
                 {
                 title: strings.are_there_advantages_in_using_barrier_methods,
-                content: 'Lorem ipsum...',
+                content: strings.protect_against_STDs,
                     },
                 {
                 title: strings.are_there_disadvantages_in_using_barrier_methods,
-                content: 'Lorem ipsum...',
+                content: strings.highest_pregnancy_rates,
                     },
                 {
                 title: strings.what_is_the_possibility_of_getting_pregnant_while_using_barrier_methods,
-                content: 'Lorem ipsum...',
+                content: strings.vary_in_their_ability,
                     },
     
             ]
@@ -255,29 +256,29 @@ class OptionsView extends Component {
               imageURI: 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/Foam-min.png?alt=media&token=bc99feb4-c6ff-47ff-b47c-63b889887438',
               questionSet: [
                 {
-                title: strings.what_are_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.which_barrier_methods_protect_me_from_sexually_transmitted_infections_stis,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.how_do_i_get_a_barrier_method,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.are_there_advantages_in_using_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.are_there_disadvantages_in_using_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.what_is_the_possibility_of_getting_pregnant_while_using_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
+                    title: strings.what_are_barrier_methods,
+                    content: strings.Barrier_Methods_Are,
+                        },
+                    {
+                    title: strings.which_barrier_methods_protect_me_from_sexually_transmitted_infections_stis,
+                    content: strings.Male_or_female_condoms_are,
+                        },
+                    {
+                    title: strings.how_do_i_get_a_barrier_method,
+                    content: strings.bought_at_drug_stores,
+                        },
+                    {
+                    title: strings.are_there_advantages_in_using_barrier_methods,
+                    content: strings.protect_against_STDs,
+                        },
+                    {
+                    title: strings.are_there_disadvantages_in_using_barrier_methods,
+                    content: strings.highest_pregnancy_rates,
+                        },
+                    {
+                    title: strings.what_is_the_possibility_of_getting_pregnant_while_using_barrier_methods,
+                    content: strings.vary_in_their_ability,
+                        },
     
             ]
             },
@@ -287,29 +288,29 @@ class OptionsView extends Component {
               imageURI: 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/Sponge-min.png?alt=media&token=a3504a30-e744-4d0e-a70b-c94564e4a6dd',
               questionSet: [
                 {
-                title: strings.what_are_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.which_barrier_methods_protect_me_from_sexually_transmitted_infections_stis,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.how_do_i_get_a_barrier_method,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.are_there_advantages_in_using_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.are_there_disadvantages_in_using_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
-                {
-                title: strings.what_is_the_possibility_of_getting_pregnant_while_using_barrier_methods,
-                content: 'Lorem ipsum...',
-                    },
+                    title: strings.what_are_barrier_methods,
+                    content: strings.Barrier_Methods_Are,
+                        },
+                    {
+                    title: strings.which_barrier_methods_protect_me_from_sexually_transmitted_infections_stis,
+                    content: strings.Male_or_female_condoms_are,
+                        },
+                    {
+                    title: strings.how_do_i_get_a_barrier_method,
+                    content: strings.bought_at_drug_stores,
+                        },
+                    {
+                    title: strings.are_there_advantages_in_using_barrier_methods,
+                    content: strings.protect_against_STDs,
+                        },
+                    {
+                    title: strings.are_there_disadvantages_in_using_barrier_methods,
+                    content: strings.highest_pregnancy_rates,
+                        },
+                    {
+                    title: strings.what_is_the_possibility_of_getting_pregnant_while_using_barrier_methods,
+                    content: strings.vary_in_their_ability,
+                        },
     
             ]
             },
@@ -395,11 +396,11 @@ const styles = StyleSheet.create({
 
     titleTextStyle: {
         color: '#fff',
-        fontSize: 18,
+        fontSize: moderateScale(18),
     },
 
     listItemStyle: {
-        height: 70,
+        height: verticalScale(70),
         borderBottomWidth: 0
     }
   });

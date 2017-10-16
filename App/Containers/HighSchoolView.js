@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { strings } from '../Utils/Strings';
+import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
 
 class HighSchoolView extends Component {
@@ -39,19 +40,19 @@ const styles = StyleSheet.create({
     titleStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 18,
-        paddingTop: 10,
-        paddingBottom: 8
+        fontSize: moderateScale(18),
+        paddingTop: scale(10),
+        paddingBottom: scale(8)
     },
 
     bodyStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 14,
+        fontSize: moderateScale(14),
     },
 
     scrollStyle: {
         flex: 1,
-        padding: 8
+        padding: scale(8)
     }
   });

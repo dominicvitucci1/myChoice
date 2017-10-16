@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { strings } from '../Utils/Strings';
+import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
 
 class Disclaimer extends Component {
@@ -39,23 +40,23 @@ const styles = StyleSheet.create({
     titleStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 32,
-        marginBottom: 15,
-        marginLeft: 8,
-        marginRight: 8
+        fontSize: moderateScale(32),
+        marginBottom: scale(15),
+        marginLeft: scale(8),
+        marginRight: scale(8)
     },
 
     disclaimerStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 18,
-        marginBottom: 8,
-        marginLeft: 8,
-        marginRight: 8
+        fontSize: moderateScale(18),
+        marginBottom: scale(8),
+        marginLeft: scale(8),
+        marginRight: scale(8)
     },
 
     scrollStyle: {
         flex: 1,
-        padding: 8
+        padding: scale(8)
     }
   });
