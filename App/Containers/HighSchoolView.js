@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import Hyperlink from 'react-native-hyperlink';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
@@ -19,9 +20,11 @@ class HighSchoolView extends Component {
                     <Text style={styles.titleStyle}>
                         { strings.HS_Question }
                     </Text> 
-                    <Text style={styles.titleStyle}>
-                        { strings.thinking_about_having_sex_you_may_feel_curious_interested_or_even_pressured_how_do_you_know_what_is_ }
-                    </Text>
+                    <Hyperlink linkDefault linkStyle={{ color: '#0645AD' }}>
+                        <Text style={styles.titleStyle}>
+                            { strings.thinking_about_having_sex_you_may_feel_curious_interested_or_even_pressured_how_do_you_know_what_is_ }
+                        </Text>
+                    </Hyperlink>
                 </ScrollView>
             </View>
             

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator, Alert } from 'react-native';
-import { List, ListItem, SearchBar } from 'react-native-elements';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 //import { data } from '../Utils/OptionsData';
