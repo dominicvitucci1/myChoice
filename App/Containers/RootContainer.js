@@ -12,6 +12,9 @@ import OptionsView from './OptionsView';
 import HighSchoolView from './HighSchoolView';
 import ForMeView from './ForMeView';
 import DetailView from './DetailView';
+import LARCView from './LARCView';
+import QuestionsView from './QuestionsView';
+
 
 const AppNavigator = StackNavigator({
   Home: {
@@ -36,6 +39,12 @@ const AppNavigator = StackNavigator({
   },
   DetailView: {
     screen: DetailView
+  },
+  LARCView: {
+    screen: LARCView
+  },
+  QuestionsView: {
+    screen: QuestionsView
   }
 
 });

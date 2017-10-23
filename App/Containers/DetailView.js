@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
+import { Button } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
+import RNRestart from 'react-native-restart';
+import renderIf from '../Utils/renderif';
+import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
 
@@ -63,8 +67,19 @@ class DetailView extends Component {
                     titleLabel = this.props.navigation.state.params.Name;
                     imageURI = this.props.navigation.state.params.imageURI;
                     Questions = this.props.navigation.state.params.QuestionSet;
+                } else if (this.props.navigation.state.params.ID === 11) {
+                    titleLabel = this.props.navigation.state.params.Name;
+                    imageURI = this.props.navigation.state.params.imageURI;
+                    Questions = this.props.navigation.state.params.QuestionSet;
                 }
             }
+
+            onPressYes= () => {
+                
+            }
+    
+              onPressNo= () => {
+              }
 
           _renderHeader(section) {
             return (
@@ -101,6 +116,31 @@ class DetailView extends Component {
                             renderHeader={this._renderHeader}
                             renderContent={this._renderContent}
                         />
+
+                        {renderIf(this.props.navigation.state.params.loadButtons, 
+                            <ScrollView style={styles.scrollStyle} contentContainerStyle={styles.wrapper}>
+                                <Text style={styles.questionStyle}>
+                                    {strings.would_you_like_to_see_what_forms_of_birth_control_will_work_for_you_including_larcs}
+                                </Text>
+                                <View style={styles.buttonBackground}>
+                                    <Button
+                                        backgroundColor='#2dc937'
+                                        small
+                                        buttonStyle={styles.buttonYesStyle}
+                                        title={strings.Yes}
+                                        onPress={this.onPressYes}
+                                    />
+                
+                                    <Button
+                                        backgroundColor='#cc3232'
+                                        small
+                                        buttonStyle={styles.buttonNoStyle}
+                                        title={strings.No}
+                                        onPress={this.onPressNo}
+                                    />
+                                </View>
+                            </ScrollView>
+                    )}
                     </ScrollView>
                 </View>
                 
@@ -148,7 +188,6 @@ class DetailView extends Component {
 
         content: {
             padding: scale(20),
-            //backgroundColor: '#fff',
             borderColor: 'white',
             borderWidth: 1,
           },
@@ -160,7 +199,6 @@ class DetailView extends Component {
           },
 
           header: {
-            //backgroundColor: '#F5FCFF',
             padding: scale(10),
             borderColor: 'white',
             borderWidth: 1,
@@ -172,4 +210,34 @@ class DetailView extends Component {
             fontWeight: '500',
             color: 'white'
           },
+
+          buttonNoStyle: {
+            height: verticalScale(60),
+            width: moderateScale(120),
+            borderRadius: 5,
+        },
+    
+        buttonYesStyle: {
+            height: verticalScale(60),
+            width: moderateScale(120),
+            borderRadius: 5,
+        },
+    
+        buttonBackground: {
+            backgroundColor: 'transparent',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignSelf: 'center',
+            flex: 1,
+        },
+
+        questionStyle: {
+            textAlign: 'center',
+            color: '#fff',
+            fontSize: moderateScale(16),
+            marginTop: scale(8),
+            marginLeft: scale(8),
+            marginRight: scale(8),
+            marginBottom: scale(8)
+        },
       });

@@ -4,7 +4,10 @@ import { Button } from 'react-native-elements';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
-class ForMeView extends Component {
+let questionPrompt = '';
+
+
+class QuestionsView extends Component {
 
     static navigationOptions = {
         headerStyle: {
@@ -12,22 +15,14 @@ class ForMeView extends Component {
             }
       };
 
-    onPressYes= () => {
-        const { navigate } = this.props.navigation;
-        navigate('QuestionsView');
+      componentWillMount= () => {
         }
-
-    onPressNo= () => {
-        const { navigate } = this.props.navigation;
-        navigate('LARCView');
-        }
-    
 
     render() {
         return (
             <View style={styles.mainBackgroud}>
                 <Text style={styles.questionStyle}>
-                    {strings.Are_you_planning_to_get_pregnant_within_the_next_1_3_years}
+                    {strings.How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply}
                 </Text> 
 
                 <View style={styles.buttonBackground}>
@@ -36,7 +31,6 @@ class ForMeView extends Component {
                         small
                         buttonStyle={styles.buttonYesStyle}
                         title={strings.Yes}
-                        onPress={this.onPressYes}
                     />
 
                     <Button
@@ -44,7 +38,6 @@ class ForMeView extends Component {
                         small
                         buttonStyle={styles.buttonNoStyle}
                         title={strings.No}
-                        onPress={this.onPressNo}
                     />
                 </View>
             </View>
@@ -52,7 +45,7 @@ class ForMeView extends Component {
     }
 }
 
-export default ForMeView;
+export default QuestionsView;
 
 const styles = StyleSheet.create({
     mainBackgroud: {
