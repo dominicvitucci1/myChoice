@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
+import SelectMultiple from 'react-native-select-multiple';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
-let questionPrompt = '';
-
+let frequency = [];
 
 class QuestionsView extends Component {
 
@@ -15,7 +15,15 @@ class QuestionsView extends Component {
             }
       };
 
-      componentWillMount= () => {
+    state = { selectedFrequency: [] }
+
+    componentWillMount= () => {
+        frequency = [strings.Daily, strings.Weekly, strings.Monthly, strings.Every_Three_Months, strings.three_five_Years, strings.Ten_Years]; 
+        }
+    
+    onSelectionsChange = (selectedFrequency) => {
+        // selectedFrequency is array of { label, value }
+        this.setState({ selectedFrequency });
         }
 
     render() {
@@ -25,19 +33,23 @@ class QuestionsView extends Component {
                     {strings.How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply}
                 </Text> 
 
+                <SelectMultiple
+                    items={frequency}
+                    selectedItems={this.state.selectedFrequency}
+                    onSelectionsChange={this.onSelectionsChange}
+                    rowStyle={styles.rowStyle}
+                    labelStyle={styles.checkLabelStyle}
+                    selectedCheckboxStyle={styles.selectedCheckStyle}
+                    checkboxStyle={styles.checkboxStyle}
+                />
+
                 <View style={styles.buttonBackground}>
-                    <Button
-                        backgroundColor='#2dc937'
-                        small
-                        buttonStyle={styles.buttonYesStyle}
-                        title={strings.Yes}
-                    />
 
                     <Button
-                        backgroundColor='#cc3232'
+                        backgroundColor='#903e32'
                         small
-                        buttonStyle={styles.buttonNoStyle}
-                        title={strings.No}
+                        buttonStyle={styles.buttonNextStyle}
+                        title={strings.Next}
                     />
                 </View>
             </View>
@@ -64,18 +76,12 @@ const styles = StyleSheet.create({
         width: moderateScale(343)
     },
 
-    buttonNoStyle: {
+    buttonNextStyle: {
         height: verticalScale(80),
-        width: moderateScale(160),
-        borderRadius: 5,
-        marginRight: scale(8)
-    },
-
-    buttonYesStyle: {
-        height: verticalScale(80),
-        width: moderateScale(160),
+        width: moderateScale(320),
         borderRadius: 5,
         marginLeft: scale(8),
+        marginRight: scale(8)
     },
 
     buttonBackground: {
@@ -88,4 +94,29 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: scale(8)
     },
+
+    rowStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#cccccc',
+        backgroundColor: 'transparent'
+    },
+
+    checkboxStyle: {
+        width: moderateScale(40),
+        height: moderateScale(40),
+        marginRight: 5
+      },
+
+      checkLabelStyle: {
+        color: '#fff',
+        fontSize: moderateScale(14)
+      }, 
+
+      selectedCheckStyle: {
+        tintColor: '#2dc937',
+      }
   });

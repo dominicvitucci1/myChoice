@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
 import RNRestart from 'react-native-restart';
+import { NavigationActions } from 'react-navigation';
 import renderIf from '../Utils/renderif';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
@@ -75,11 +76,19 @@ class DetailView extends Component {
             }
 
             onPressYes= () => {
-                
+                const { navigate } = this.props.navigation;
+                navigate('QuestionsView');
             }
     
-              onPressNo= () => {
-              }
+              onPressNo= () => this.props
+                .navigation
+                .dispatch(NavigationActions.reset(
+                  {
+                     index: 0,
+                     actions: [
+                       NavigationActions.navigate({ routeName: 'Home' })
+                     ]
+                   }))
 
           _renderHeader(section) {
             return (
