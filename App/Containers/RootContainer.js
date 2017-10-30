@@ -14,7 +14,10 @@ import ForMeView from './ForMeView';
 import DetailView from './DetailView';
 import LARCView from './LARCView';
 import QuestionsView from './QuestionsView';
-
+import QuestionsMedView from './QuestionsMedView';
+import QuestionsOptionsView from './QuestionsOptionsView';
+import ResultsView from './ResultsView';
+import EmailView from './EmailView';
 
 const AppNavigator = StackNavigator({
   Home: {
@@ -45,6 +48,18 @@ const AppNavigator = StackNavigator({
   },
   QuestionsView: {
     screen: QuestionsView
+  }, 
+  QuestionsMedView: {
+    screen: QuestionsMedView
+  },
+  QuestionsOptionsView: {
+    screen: QuestionsOptionsView
+  },
+  ResultsView: {
+    screen: ResultsView
+  },
+  EmailView: {
+    screen: EmailView
   }
 
 });

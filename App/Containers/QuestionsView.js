@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 import SelectMultiple from 'react-native-select-multiple';
 import { strings } from '../Utils/Strings';
@@ -18,7 +18,29 @@ class QuestionsView extends Component {
     state = { selectedFrequency: [] }
 
     componentWillMount= () => {
-        frequency = [strings.Daily, strings.Weekly, strings.Monthly, strings.Every_Three_Months, strings.three_five_Years, strings.Ten_Years]; 
+        frequency = [{ label: strings.Daily, value: 'Daily' }, { label: strings.Weekly, value: 'Weekly' }, { label: strings.Monthly, value: 'Monthly' }, { label: strings.Every_Three_Months, value: '3 Months' }, { label: strings.three_five_Years, value: '5 Years' }, { label: strings.Ten_Years, value: '10 Years' }]; 
+        }
+
+    onPressNext= () => {
+        if (this.state.selectedFrequency.length > 0) {
+            // const selectedFrequency = this.state.selectedFrequency;
+            // try {
+            //     await AsyncStorage.setItem('selectedFrequency', JSON.stringify(selectedFrequency));
+            //   } catch (error) {
+            //     // Error saving data
+            //   }
+
+            const { navigate } = this.props.navigation;
+            navigate('QuestionsMedView', { options: this.state.selectedFrequency });
+        } else {
+            Alert.alert(
+                strings.Select_At_Least_One_Option,
+                '',
+                [
+                  { text: strings.Okay, style: 'cancel' },
+                ]
+              );
+            }
         }
     
     onSelectionsChange = (selectedFrequency) => {
@@ -29,29 +51,35 @@ class QuestionsView extends Component {
     render() {
         return (
             <View style={styles.mainBackgroud}>
-                <Text style={styles.questionStyle}>
-                    {strings.How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply}
-                </Text> 
+                <ScrollView style={styles.scrollStyle} contentContainerStyle={styles.wrapper}>
+                    <View style={styles.mainScrollBackgroud}>
+                        <Text style={styles.questionStyle}>
+                            {strings.How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply}
+                        </Text> 
 
-                <SelectMultiple
-                    items={frequency}
-                    selectedItems={this.state.selectedFrequency}
-                    onSelectionsChange={this.onSelectionsChange}
-                    rowStyle={styles.rowStyle}
-                    labelStyle={styles.checkLabelStyle}
-                    selectedCheckboxStyle={styles.selectedCheckStyle}
-                    checkboxStyle={styles.checkboxStyle}
-                />
+                        <SelectMultiple
+                            items={frequency}
+                            selectedItems={this.state.selectedFrequency}
+                            onSelectionsChange={this.onSelectionsChange}
+                            rowStyle={styles.rowStyle}
+                            labelStyle={styles.checkLabelStyle}
+                            selectedCheckboxStyle={styles.selectedCheckStyle}
+                            checkboxStyle={styles.checkboxStyle}
+                            style={styles.multiStyle}
+                        />
 
-                <View style={styles.buttonBackground}>
+                        <View style={styles.buttonBackground}>
 
-                    <Button
-                        backgroundColor='#903e32'
-                        small
-                        buttonStyle={styles.buttonNextStyle}
-                        title={strings.Next}
-                    />
-                </View>
+                            <Button
+                                backgroundColor='#903e32'
+                                small
+                                buttonStyle={styles.buttonNextStyle}
+                                title={strings.Next}
+                                onPress={this.onPressNext}
+                            />
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
         );
     }
@@ -65,6 +93,10 @@ const styles = StyleSheet.create({
       backgroundColor: '#996633'
     },
 
+    mainScrollBackgroud: {
+        flex: 1,
+      },
+
     questionStyle: {
         textAlign: 'center',
         color: '#fff',
@@ -73,7 +105,9 @@ const styles = StyleSheet.create({
         marginLeft: scale(8),
         marginRight: scale(8),
         height: verticalScale(75),
-        width: moderateScale(343)
+        width: moderateScale(343),
+        alignSelf: 'center',        
+        
     },
 
     buttonNextStyle: {
@@ -91,8 +125,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginLeft: scale(8),
         marginRight: scale(8),
-        position: 'absolute',
-        bottom: scale(8)
+        marginBottom: scale(16)
     },
 
     rowStyle: {
@@ -118,5 +151,20 @@ const styles = StyleSheet.create({
 
       selectedCheckStyle: {
         tintColor: '#2dc937',
-      }
+      },
+
+      multiStyle: {
+        marginBottom: scale(8)
+    },
+
+      scrollStyle: {
+        flex: 1,
+        padding: scale(8),        
+      },
+
+      wrapper: {
+        alignItems: 'center',
+        flexGrow: 1
+        
+    },
   });

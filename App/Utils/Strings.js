@@ -74,7 +74,7 @@ export const strings = new LocalizedStrings({
         are_there_disadvantages_in_using_the_ring: 'Are there disadvantages in using the ring?',
         are_there_disadvantages_to_taking_birth_control_pills: 'Are there disadvantages to taking birth control pills?',
         are_you_being_treated_for_any_sexually_transmitted_infections_stis_do_you_have_a_lot_of_vaginal_blee: 'Are you being treated for any sexually transmitted infections (STIs)? Do you have a lot of vaginal bleeding? Do you have unusual vaginal bleeding and not know why? \n\nIf the answer is “yes” to one or more of the above questions, please select “yes”.',
-        are_you_taking_any_of_these_medications_that_are_used_for_tuberculosis_tb_or_seizures: 'Are you taking any of these medications that are used for tuberculosis (TB) or seizures?',
+        are_you_taking_any_of_these_medications_that_are_used_for_tuberculosis_tb_or_seizures: 'Are you taking any of these medications that are used for tuberculosis (TB) or seizures? \n\n\u{2022} Rifampin \n\u{2022} Rifabutin \n\u{2022} Phenobarbitol/barbituates (Lumina, Barbital, Solfoton) \n\u{2022} Primidone (Mysoline) \n\u{2022} Phenytoin (Dilantin) \n\u{2022} Lamotrigine (Lamictal) \n\u{2022} Carbamazepine (Tegretol) \n\u{2022} Topiramate (Topamax)',
         Asian: 'Asian',
         birth_control_shot: 'Birth Control Shot',
         black_or_african_american: 'Black or African American',
@@ -219,6 +219,8 @@ export const strings = new LocalizedStrings({
         How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply: 'How often would you like to take/receive your birth control (select all that apply)?',
         Send: 'Send',
         View_Your_Results: 'View Your Results',
+        Select_At_Least_One_Option: 'Please Select At Least One Option',
+        TB_Meds: '\u{2022} Rifampin \n\u{2022} Rifabutin \n\u{2022} Phenobarbitol/barbituates (Lumina, Barbital, Solfoton) \n\u{2022} Primidone (Mysoline) \n\u{2022} Phenytoin (Dilantin) \n\u{2022} Lamotrigine (Lamictal) \n\u{2022} Carbamazepine (Tegretol) \n\u{2022} Topiramate (Topamax)'
         
     },
     es: {
@@ -294,7 +296,7 @@ export const strings = new LocalizedStrings({
         are_there_disadvantages_in_using_the_ring: '¿Hay desventajas en el uso del anillo?',
         are_there_disadvantages_to_taking_birth_control_pills: '¿Hay desventajas de tomar las pastillas anticonceptivas?',
         are_you_being_treated_for_any_sexually_transmitted_infections_stis_do_you_have_a_lot_of_vaginal_blee: '¿Está usted recibiendo tratamiento para cualquier infección de transmisión sexual (ITS)? ¿Tienes mucho sangrado vaginal? ¿Tiene sangrado vaginal inusual y no sé por qué? \n\nSi la respuesta es sí a uno o más de las preguntas anteriores, seleccione sí.',
-        are_you_taking_any_of_these_medications_that_are_used_for_tuberculosis_tb_or_seizures: '¿Está tomando cualquiera de estos medicamentos que se utilizan para tuberculosis (TB) o crisis?',
+        are_you_taking_any_of_these_medications_that_are_used_for_tuberculosis_tb_or_seizures: '¿Está tomando cualquiera de estos medicamentos que se utilizan para tuberculosis (TB) o crisis? \n\n\u{2022} Rifampin \n\u{2022} Rifabutin \n\u{2022} Phenobarbitol/barbituates (Lumina, Barbital, Solfoton) \n\u{2022} Primidone (Mysoline) \n\u{2022} Phenytoin (Dilantin) \n\u{2022} Lamotrigine (Lamictal) \n\u{2022} Carbamazepine (Tegretol) \n\u{2022} Topiramate (Topamax)',
         Asian: 'Asiático',
         birth_control_shot: 'Inyección Anticonceptivo ',
         black_or_african_american: 'Negro/a o afroamericano/a',
@@ -440,6 +442,9 @@ export const strings = new LocalizedStrings({
         How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply: '¿Con que frecuencia le gustaría tomar o recibir su método contraceptivo? (Marque todas las que aplican)',
         Send: 'Mande',
         View_Your_Results: 'Vea su resultados',
+        Select_At_Least_One_Option: 'Por favor, seleccione al menos una opción',
+        TB_Meds: '\u{2022} Rifampin \n\u{2022} Rifabutin \n\u{2022} Phenobarbitol/barbituates (Lumina, Barbital, Solfoton) \n\u{2022} Primidone (Mysoline) \n\u{2022} Phenytoin (Dilantin) \n\u{2022} Lamotrigine (Lamictal) \n\u{2022} Carbamazepine (Tegretol) \n\u{2022} Topiramate (Topamax)'
+        
     },
 
    });
