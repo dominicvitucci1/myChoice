@@ -68,7 +68,7 @@ class EmailView extends Component {
         fetch('https://api.sendgrid.com/v3/mail/send', {
             method: 'POST',
             headers: {
-              Authorization: 'Bearer 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',
+              Authorization: 'Bearer {API Key}',
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
