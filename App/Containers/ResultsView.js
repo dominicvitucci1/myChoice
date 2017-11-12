@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Alert, FlatList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Alert, FlatList, ScrollView, NetInfo } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
+import * as firebase from 'firebase';
+import { NavigationActions } from 'react-navigation';
+import RNRestart from 'react-native-restart';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
@@ -236,43 +239,6 @@ class ResultsView extends Component {
                       }
                 );
                 } else if (finalOptions[j].value === '10 Years') {
-                    data.push(
-                    { key: strings.long_acting_reversible_contraceptives_larc,
-                        id: 11,                        
-                        imageURI: 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/Hormone%20IUD-min.png?alt=media&token=4139fea0-df4e-44c9-b550-aefca38af76b',
-                        questionSet: [
-                        {
-                        title: strings.what_is_it,
-                        content: strings.an_iud_is_a_small_soft_flexible_t_shaped_device_that_is_wrapped_in_copper_or_contains_hormones_a_hea,
-                            },
-                        {
-                        title: strings.there_are_two_types_of_iuds,
-                        content: strings.IUD_Description,
-                            },
-                        {
-                        title: strings.what_can_i_expect_when_the_iud_is_inserted,
-                        content: strings.putting_in_an_iud_only_takes_a_few_minutes_and_can_be_done_in_the_health_care_provider_s_office_when,
-                            },
-                        {
-                        title: strings.are_there_advantages_in_using_an_iud,
-                        content: strings.an_iud_is_very_good_in_preventing_pregnancy_for_a_long_period_of_time_having_an_iud_is_easy_as_you_d,
-                            },
-                        {
-                        title: strings.are_there_disadvantages_in_using_an_iud,
-                        content: strings.it_may_cost_more_but_the_costs_may_be_reduced_or_free_at_a_community_clinic_or_if_you_have_health_in,
-                            },
-                        {
-                        title: strings.how_do_i_get_an_iud,
-                        content: strings.a_health_care_provider_puts_it_into_your_uterus_during_an_office_visit_after_it_is_put_in_you_only_n,
-                            },
-                        {
-                        title: strings.what_is_the_possibility_of_getting_pregnant_while_having_an_iud,
-                        content: strings.using_an_iud_is_one_of_the_best_methods_of_birth_control_out_of_100_women_who_use_this_method_less_t,
-                            },
-            
-                        ]
-                    }
-                );
                 } else {
                     Alert.alert(
                         strings.there_were_no_birth_control_options_that_matched_your_preferences_please_reconsider_some_of_your_pre,
@@ -291,6 +257,22 @@ class ResultsView extends Component {
         componentWillMount= () => {
             this.setState({ data });
             console.log(data);
+            
+            NetInfo.isConnected.addEventListener('change', this.handleConnectionChange);
+            
+                NetInfo.isConnected.fetch().done(
+                  (isConnected) => { this.setState({ status: isConnected }); }
+                );            
+            if (this.state.status === true) {
+            const userId = firebase.auth().currentUser.uid;            
+            firebase.database().ref(`users/${userId}`).set({
+                Chosen_Options: data
+              });
+            }
+            }
+
+            componentWillUnmount= () => {
+                NetInfo.isConnected.removeEventListener('change', this.handleConnectionChange);                
             }
 
         onPressYes= () => {
@@ -300,26 +282,53 @@ class ResultsView extends Component {
     
         onPressNo= () => {
             Alert.alert(
-                strings.there_were_no_birth_control_options_that_matched_your_preferences_please_reconsider_some_of_your_pre,
-                strings.press_ok_to_change_some_of_your_preferences_or_press_cancel_to_exit_the_app,
+                strings.after_using_this_application_are_you_more_likely_to_use_an_iud_or_an_implant,
+                strings.your_response_will_not_be_associated_with_any_identifying_information,
                 [
-                  { text: strings.Okay, onPress: () => this.onPressOkay() },
-                  { text: strings.Cancel, onPress: () => this.onPressCancel() }
+                  { text: strings.Yes, onPress: () => this.onPressYesLARC() },
+                  { text: strings.No, onPress: () => this.onPressNoLARC(), style: 'cancel' }
                 ]
               );
         }
 
         onPressOkay= () => {
-
+            RNRestart.Restart();
         }
 
         onPressCancel= () => {
-            
+            console.log('cancel pressed');
+        }
+
+        onPressYesLARC= () => {
+            Alert.alert(
+                strings.if_youre_finished_viewing_your_results_and_you_dont_wish_to_receive_them_by_email_tap_okay_to_exit_t,
+                strings.your_email_address_will_not_be_saved_and_the_methods_selected_for_you_will_not_be_connected_to_any_i,
+                [
+                  { text: strings.Okay, onPress: () => this.onPressOkay() },
+                  { text: strings.Cancel, onPress: () => this.onPressCancel(), style: 'cancel' }
+                ]
+              );
+        }
+
+        onPressNoLARC= () => {
+            Alert.alert(
+                strings.if_youre_finished_viewing_your_results_and_you_dont_wish_to_receive_them_by_email_tap_okay_to_exit_t,
+                strings.your_email_address_will_not_be_saved_and_the_methods_selected_for_you_will_not_be_connected_to_any_i,
+                [
+                  { text: strings.Okay, onPress: () => this.onPressOkay() },
+                  { text: strings.Cancel, onPress: () => this.onPressCancel(), style: 'cancel' }
+                ]
+              );
         }
 
         onPressItem= (id, key, uri, questions) => {
             const { navigate } = this.props.navigation;
             navigate('DetailView', { ID: id, Name: key, imageURI: uri, QuestionSet: questions });
+        }
+
+        handleConnectionChange = (isConnected) => {
+            this.setState({ status: isConnected });
+            console.log(`is connected: ${this.state.status}`);
         }
     
         renderSeparator = () => (
@@ -331,6 +340,7 @@ class ResultsView extends Component {
                 }}
               />
             );
+            
 
     render() {
         return (
@@ -426,8 +436,8 @@ const styles = StyleSheet.create({
     resultsQuestionStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: moderateScale(18),
-        //marginBottom: scale(8),
+        fontSize: moderateScale(16),
+        marginBottom: scale(8),
         marginLeft: scale(8),
         marginRight: scale(8),
         height: verticalScale(45),

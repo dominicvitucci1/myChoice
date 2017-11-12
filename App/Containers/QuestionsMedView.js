@@ -2,18 +2,31 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 import SelectMultiple from 'react-native-select-multiple';
+import { ReactNativeAudioStreaming } from 'react-native-audio-streaming';
+import Tts from 'react-native-tts';
+import Icon from 'react-native-vector-icons/Entypo';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
 let medExclusionQuestions = [];
 let frequency = [];
 
+const url = 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/42.mp3?alt=media&token=3c407ff2-f2aa-44fd-9144-921baa3f4a3a';
+
 class QuestionsMedView extends Component {
 
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#CCCC66',
-            }
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        return {
+            headerRight: <Icon.Button
+            name='sound'
+            backgroundColor='transparent'
+            onPress={() => { params.onPressSound(); }}
+            />,
+             headerStyle: {
+                backgroundColor: '#CCCC66',
+                }
+        };          
       };
 
     constructor(props) {
@@ -25,6 +38,18 @@ class QuestionsMedView extends Component {
 
     componentWillMount= () => {
         medExclusionQuestions = [strings.Did_you_have_a_baby_less_than_1_month_ago_and_you_are_breastfeeding_the_baby, strings.Did_you_have_a_baby_less_than_3_weeks_ago, strings.Are_you_older_than_35_and_smoke, strings.Are_you_older_than_35_years_old_and_also_have_migraine_headaches, strings.Do_you_have_a_history_of_a_blood_clot_in_the_lungs_or_legs, strings.Have_you_had_recent_surgery_where_you_needed_to_stay_in_bed]; 
+        }
+
+    componentDidMount() {
+        this.props.navigation.setParams({ onPressSound: this.onPressSound });
+        }
+
+    onPressSound= () => {
+            if (strings.getLanguage() === 'en') {
+                Tts.speak(this.state.medPrompt);
+            } else if (strings.getLanguage() === 'es') {
+                ReactNativeAudioStreaming.play(url, { showIniOSMediaCenter: true, showInAndroidNotifications: true });              
+            }     
         }
     
     onSelectionsChange = (selectedExclusions) => {
@@ -77,15 +102,22 @@ class QuestionsMedView extends Component {
                     const { navigate } = this.props.navigation;
                     navigate('QuestionsOptionsView', { loadButtons: true, bcOptions: frequency }); 
                 }
+
+                frequency = frequency.filter(Boolean);
+                const { navigate } = this.props.navigation;
+                navigate('QuestionsOptionsView', { loadButtons: true, bcOptions: frequency });
             }           
             } else if (medExclusionQuestions[0] === strings.Did_you_have_a_baby_less_than_1_month_ago_and_you_are_breastfeeding_the_baby) {
                 this.setState({ medPrompt: strings.Please_check_all_that_apply_If_none_of_these_apply_to_you_press_Next });
+                this.refs.scrollView.scrollTo({ x: 0, y: 0, animated: true });
                 medExclusionQuestions = [strings.do_you_have_a_condition_that_causes_you_to_develop_blood_clots_more_easily, strings.do_you_have_kidney_disease_do_you_have_retinal_disease_of_the_eye, strings.have_you_had_diabetes_for_over_20_years, strings.do_you_have_any_disease_of_your_blood_vessels, strings.do_you_have_numbness_tingling_and_pain_in_your_hands_or_feet, strings.do_you_have_gallbladder_disease_and_have_not_had_your_gallbladder_removed];
             } else if (medExclusionQuestions[0] === strings.do_you_have_a_condition_that_causes_you_to_develop_blood_clots_more_easily) {
                 this.setState({ medPrompt: strings.Please_check_all_that_apply_If_none_of_these_apply_to_you_press_Next });
+                this.refs.scrollView.scrollTo({ x: 0, y: 0, animated: true });                
                 medExclusionQuestions = [strings.do_you_have_a_history_of_a_heart_attack_or_chest_pain_due_to_heart_disease, strings.have_you_ever_been_told_that_you_have_heart_disease_or_heart_failure];
             } else if (medExclusionQuestions[0] === strings.do_you_have_a_history_of_a_heart_attack_or_chest_pain_due_to_heart_disease) {
                 this.setState({ medPrompt: strings.Please_check_all_that_apply_If_none_of_these_apply_to_you_press_Next });
+                this.refs.scrollView.scrollTo({ x: 0, y: 0, animated: true });                
                 medExclusionQuestions = [strings.have_you_ever_had_a_stroke, strings.do_you_have_lupus_erythematosis_with_positive_antiphospholipid_antibodies, strings.do_you_have_migraine_headaches_do_you_have_warning_signs_before_you_have_the_migraine_headache, strings.have_you_ever_had_breast_cancer, strings.do_you_have_liver_disease_a_liver_tumor_or_liver_cancer, strings.have_you_ever_been_told_that_you_have_scarring_of_the_liver];
             } else if (medExclusionQuestions[0] === strings.have_you_ever_had_a_stroke) {
                 frequency = frequency.filter(Boolean);                
@@ -97,7 +129,7 @@ class QuestionsMedView extends Component {
     render() {
         return (
             <View style={styles.mainBackgroud}>
-                <ScrollView style={styles.scrollStyle} contentContainerStyle={styles.wrapper}>
+                <ScrollView style={styles.scrollStyle} contentContainerStyle={styles.wrapper} ref='scrollView'>
                     <View style={styles.mainScrollBackgroud}>
                         <Text style={styles.questionStyle}>
                             {this.state.medPrompt}
@@ -146,7 +178,7 @@ const styles = StyleSheet.create({
     questionStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: moderateScale(20),
+        fontSize: moderateScale(16),
         marginBottom: scale(8),
         marginLeft: scale(8),
         marginRight: scale(8),

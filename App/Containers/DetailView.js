@@ -150,6 +150,7 @@ class DetailView extends Component {
                                 </View>
                             </ScrollView>
                     )}
+                        <View style={{ height: 30 }} />
                     </ScrollView>
                 </View>
                 

@@ -3,6 +3,9 @@ package com.mychoicecontraception;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import net.no_mad.tts.TextToSpeechPackage;
+import com.audioStreaming.ReactNativeAudioStreamingPackage;
+import fm.indiecast.rnaudiostreamer.RNAudioStreamerPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
@@ -28,6 +31,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new TextToSpeechPackage(),
+            new ReactNativeAudioStreamingPackage(),
+            new RNAudioStreamerPackage(),
             new ReactNativeRestartPackage(),
             new FastImageViewPackage(),
             new ReactNativeLocalizationPackage(),

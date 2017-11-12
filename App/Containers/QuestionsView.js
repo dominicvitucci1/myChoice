@@ -2,23 +2,48 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 import SelectMultiple from 'react-native-select-multiple';
+import { ReactNativeAudioStreaming } from 'react-native-audio-streaming';
+import Tts from 'react-native-tts';
+import Icon from 'react-native-vector-icons/Entypo';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
 let frequency = [];
 
+const url = 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/61.mp3?alt=media&token=87b070d7-59de-4da0-bd40-b8fc03e930c9';
+
 class QuestionsView extends Component {
 
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#CCCC66',
-            }
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        return {
+            headerRight: <Icon.Button
+            name='sound'
+            backgroundColor='transparent'
+            onPress={() => { params.onPressSound(); }}
+            />,
+             headerStyle: {
+                backgroundColor: '#CCCC66',
+                }
+        };          
       };
 
     state = { selectedFrequency: [] }
 
     componentWillMount= () => {
         frequency = [{ label: strings.Daily, value: 'Daily' }, { label: strings.Weekly, value: 'Weekly' }, { label: strings.Monthly, value: 'Monthly' }, { label: strings.Every_Three_Months, value: '3 Months' }, { label: strings.three_five_Years, value: '5 Years' }, { label: strings.Ten_Years, value: '10 Years' }]; 
+        }
+
+    componentDidMount() {
+        this.props.navigation.setParams({ onPressSound: this.onPressSound });
+        }
+
+        onPressSound= () => {
+        if (strings.getLanguage() === 'en') {
+            Tts.speak(strings.How_often_would_you_like_to_take_receive_your_birth_control_select_all_that_apply);
+        } else if (strings.getLanguage() === 'es') {
+            ReactNativeAudioStreaming.play(url, { showIniOSMediaCenter: true, showInAndroidNotifications: true });              
+        }     
         }
 
     onPressNext= () => {
@@ -100,7 +125,7 @@ const styles = StyleSheet.create({
     questionStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: moderateScale(20),
+        fontSize: moderateScale(16),
         marginBottom: scale(8),
         marginLeft: scale(8),
         marginRight: scale(8),

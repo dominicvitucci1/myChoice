@@ -18,6 +18,8 @@ import QuestionsMedView from './QuestionsMedView';
 import QuestionsOptionsView from './QuestionsOptionsView';
 import ResultsView from './ResultsView';
 import EmailView from './EmailView';
+import InfoView from './InfoView';
+import LARCOptionsView from './LARCOptionsView';
 
 const AppNavigator = StackNavigator({
   Home: {
@@ -60,9 +62,29 @@ const AppNavigator = StackNavigator({
   },
   EmailView: {
     screen: EmailView
+  }, 
+  InfoView: {
+    screen: InfoView
+  }, 
+  LARCOptionsView: {
+    screen: LARCOptionsView
   }
 
 });
+
+// export const Root = StackNavigator({
+//   AppNavigator: {
+//     screen: AppNavigator,
+//   },
+//   InfoView: {
+//     screen: InfoView
+//   }
+// },
+
+// {
+//   mode: 'modal',
+//   headerMode: 'none',
+// });
 
 class RootContainer extends Component {
 
@@ -75,6 +97,33 @@ class RootContainer extends Component {
       storageBucket: 'mychoice-f9186.appspot.com',
       messagingSenderId: '429346895811'
     });
+
+    firebase.auth().signOut().then(() => {
+      console.log('Signed Out');
+      firebase.auth().signInAnonymously().catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+      });
+    }, (error) => {
+      console.error('Sign Out Error', error);
+    });
+
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        const uid = user.uid;
+        console.log(uid);      
+        global.userID = uid;
+        return firebase.database().ref('/SendGridKey').once('value').then((snapshot) => {
+          const key = (snapshot.val()) || 'Error';
+          global.key = String(key);
+        });
+      }
+        // User is signed out.
+    });
   }
   
 
@@ -82,32 +131,6 @@ class RootContainer extends Component {
     if (!ReduxPersist.active) {
       this.props.startup();
     }
-
-    firebase.auth().signInAnonymously().catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode + errorMessage);
-    });
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in.
-        //const isAnonymous = user.isAnonymous;
-        const uid = user.uid;
-        //console.log(isAnonymous);
-        //console.log(uid);      
-        global.userID = uid;
-        return firebase.database().ref('/SendGridKey').once('value').then((snapshot) => {
-          const key = (snapshot.val()) || 'Error';
-          global.key = String(key);
-        });
-      } else {
-        // User is signed out.
-        // ...
-      }
-      // ...
-    });
   }
 
   render() {

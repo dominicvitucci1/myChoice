@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, NetInfo } from 'react-native';
 import { Button } from 'react-native-elements';
+import * as firebase from 'firebase';
+import { ReactNativeAudioStreaming } from 'react-native-audio-streaming';
+import Tts from 'react-native-tts';
+import Icon from 'react-native-vector-icons/Entypo';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
+let url = 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/31.mp3?alt=media&token=b8bdd205-ccef-4d67-bfba-13f16050e624';
+
 class LARCView extends Component {
 
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#CCCC66',
-            }
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        return {
+            headerRight: <Icon.Button
+            name='sound'
+            backgroundColor='transparent'
+            onPress={() => { params.onPressSound(); }}
+            />,
+             headerStyle: {
+                backgroundColor: '#CCCC66',
+                }
+        };          
       };
 
       constructor(props) {
@@ -18,60 +32,77 @@ class LARCView extends Component {
         this.state = { questionPrompt: strings.Do_you_know_there_are_long_acting_reversible_contraceptives };
       }
 
-      componentWillMount= () => {
-        }
+        componentDidMount() {
+            this.props.navigation.setParams({ onPressSound: this.onPressSound });
+
+            NetInfo.isConnected.addEventListener('change', this.handleConnectionChange);
+            
+                NetInfo.isConnected.fetch().done(
+                  (isConnected) => { this.setState({ status: isConnected }); }
+                );
+          }
+
+          componentWillUnmount= () => {
+            NetInfo.isConnected.removeEventListener('change', this.handleConnectionChange);
+            }
+    
+          onPressSound= () => {
+            if (strings.getLanguage() === 'en') {
+                Tts.speak(this.state.questionPrompt);
+            } else if (strings.getLanguage() === 'es') {
+                ReactNativeAudioStreaming.play(url, { showIniOSMediaCenter: true, showInAndroidNotifications: true });              
+            }     
+          }
 
         onPressYes= () => {
             if (this.state.questionPrompt === strings.Do_you_know_there_are_long_acting_reversible_contraceptives) {
                 this.setState({ questionPrompt: strings.do_you_want_to_know_more_about_them });
-                } else if (this.state.questionPrompt === strings.do_you_want_to_know_more_about_them) {
-                    const { navigate } = this.props.navigation;
-                    navigate('DetailView', { ID: 11,
-                        Name: strings.long_acting_reversible_contraceptives_larc,
-                        imageURI: 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/Hormone%20IUD-min.png?alt=media&token=4139fea0-df4e-44c9-b550-aefca38af76b',
-                        QuestionSet:
-                        [
-                        {
-                        title: strings.what_is_it,
-                        content: strings.an_iud_is_a_small_soft_flexible_t_shaped_device_that_is_wrapped_in_copper_or_contains_hormones_a_hea,
-                            },
-                        {
-                        title: strings.there_are_two_types_of_iuds,
-                        content: strings.IUD_Description,
-                            },
-                        {
-                        title: strings.what_can_i_expect_when_the_iud_is_inserted,
-                        content: strings.putting_in_an_iud_only_takes_a_few_minutes_and_can_be_done_in_the_health_care_provider_s_office_when,
-                            },
-                        {
-                        title: strings.are_there_advantages_in_using_an_iud,
-                        content: strings.an_iud_is_very_good_in_preventing_pregnancy_for_a_long_period_of_time_having_an_iud_is_easy_as_you_d,
-                            },
-                        {
-                        title: strings.are_there_disadvantages_in_using_an_iud,
-                        content: strings.it_may_cost_more_but_the_costs_may_be_reduced_or_free_at_a_community_clinic_or_if_you_have_health_in,
-                            },
-                        {
-                        title: strings.how_do_i_get_an_iud,
-                        content: strings.a_health_care_provider_puts_it_into_your_uterus_during_an_office_visit_after_it_is_put_in_you_only_n,
-                            },
-                        {
-                        title: strings.what_is_the_possibility_of_getting_pregnant_while_having_an_iud,
-                        content: strings.using_an_iud_is_one_of_the_best_methods_of_birth_control_out_of_100_women_who_use_this_method_less_t,
-                            },
-            
-                        ],
-                        loadButtons: true });
+                if (this.state.status === true) {
+                url = 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/188.mp3?alt=media&token=01ce8226-00e4-4959-af3b-45dc0ee99080';
+                const userId = firebase.auth().currentUser.uid;                
+                firebase.database().ref(`users/${userId}`).set({
+                    Do_you_know_there_are_long_acting_reversible_contraceptives: 'Yes'
+                  });
                 }
+                } else if (this.state.questionPrompt === strings.do_you_want_to_know_more_about_them) {
+                    if (this.state.status === true) {
+                    const userId = firebase.auth().currentUser.uid;                    
+                    firebase.database().ref(`users/${userId}`).set({
+                        do_you_want_to_know_more_about_them: 'Yes'
+                      });
+                    }
+                    
+                    const { navigate } = this.props.navigation;
+                    navigate('LARCOptionsView');
             }
+        }
     
         onPressNo= () => {
             if (this.state.questionPrompt === strings.Do_you_know_there_are_long_acting_reversible_contraceptives) {
                 this.setState({ questionPrompt: strings.do_you_want_to_know_more_about_them });
+                if (this.state.status === true) {
+                url = 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/188.mp3?alt=media&token=01ce8226-00e4-4959-af3b-45dc0ee99080';                
+                const userId = firebase.auth().currentUser.uid;                
+                firebase.database().ref(`users/${userId}`).set({
+                    Do_you_know_there_are_long_acting_reversible_contraceptives: 'No'
+                  });
+                }
                 } else if (this.state.questionPrompt === strings.do_you_want_to_know_more_about_them) {
+                if (this.state.status === true) {
+                const userId = firebase.auth().currentUser.uid;                    
+                firebase.database().ref(`users/${userId}`).set({
+                    do_you_want_to_know_more_about_them: 'No'
+                    });
+                }
+                
                 const { navigate } = this.props.navigation;
                 navigate('QuestionsView');
                 }
+            }
+
+            handleConnectionChange = (isConnected) => {
+                this.setState({ status: isConnected });
+                console.log(`is connected: ${this.state.status}`);
             }
 
     render() {
@@ -114,12 +145,13 @@ const styles = StyleSheet.create({
     questionStyle: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: moderateScale(20),
+        fontSize: moderateScale(16),
         marginBottom: scale(8),
         marginLeft: scale(8),
         marginRight: scale(8),
         height: verticalScale(75),
-        width: moderateScale(343)
+        width: moderateScale(343),
+        alignSelf: 'center'        
     },
 
     buttonNoStyle: {

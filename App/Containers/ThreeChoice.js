@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight, Alert, Text } from 'react-native';
 import Swiper from 'react-native-swiper';
+import { Button } from 'react-native-elements';
 import { strings } from '../Utils/Strings';
 
 let bubbleOptions = '';
@@ -15,20 +16,15 @@ class ThreeChoice extends Component {
             }
       };
 
-      onPressForMe= () => {
-        const { navigate } = this.props.navigation;
-        navigate('ForMeView');
-      }
-
-      onPressHighSchool= () => {
-        const { navigate } = this.props.navigation;
-        navigate('HighSchoolView');
-      }
-
-      onPressOptions= () => {
-        const { navigate } = this.props.navigation;
-        navigate('OptionsView');
-      }
+        constructor() {
+            super();
+            this.state = {
+            isOpen: false,
+            isDisabled: false,
+            swipeToClose: true,
+            sliderValue: 0.3
+            };
+        }
 
       componentWillMount= () => {
         if (strings.getLanguage() === 'en') {
@@ -40,6 +36,43 @@ class ThreeChoice extends Component {
                 bubbleHS = require('../../resources/Bubbles-HS-Span.png');
                 bubbleForMe = require('../../resources/Bubbles-For-Me-Span.png');
             }
+
+            this.popUp();            
+        }
+
+        onPressForMe= () => {
+            const { navigate } = this.props.navigation;
+            navigate('ForMeView');
+        }
+
+        onPressHighSchool= () => {
+        const { navigate } = this.props.navigation;
+        navigate('HighSchoolView');
+        }
+
+        onPressOptions= () => {
+        const { navigate } = this.props.navigation;
+        navigate('OptionsView');
+        }
+
+        onPressYes= () => {
+            const { navigate } = this.props.navigation;
+            navigate('InfoView');
+        }
+
+        onPressNo= () => {
+            console.log('no pressed');
+        }
+
+        popUp= () => {
+            Alert.alert(
+                strings.would_you_like_to_provide_us_with_some_basic_data_to_help_improve_our_app,
+                '',
+                [
+                    { text: strings.Yes, onPress: () => this.onPressYes() },
+                    { text: strings.No, onPress: () => this.onPressNo() }
+                ]
+                );
         }
 
     render() {
@@ -94,7 +127,6 @@ class ThreeChoice extends Component {
                         />
                 </View>
             </Swiper>
-
         );
     }
 }

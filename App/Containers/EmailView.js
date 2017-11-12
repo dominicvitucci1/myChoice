@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
+import RNRestart from 'react-native-restart';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
 
@@ -81,7 +82,7 @@ class EmailView extends Component {
                         strings.your_results_have_been_sent,
                         strings.thank_you,
                         [
-                          { text: strings.Okay, onPress: () => this.onPressOkay() },
+                          { text: strings.Okay, onPress: () => this.onPressOkaySent() },
                         ]
                       );
                 }
@@ -91,16 +92,52 @@ class EmailView extends Component {
                     strings.error,
                     strings.error,
                     [
-                      { text: strings.Okay, onPress: () => this.onPressOkay() },
+                      { text: strings.Okay, onPress: () => this.onPressOkaySent() },
                     ]
                   );
             }
         }
       }
 
-        onPressOkay= () => {
-            
-        }
+        onPressOkaySent= () => {
+            Alert.alert(
+                strings.after_using_this_application_are_you_more_likely_to_use_an_iud_or_an_implant,
+                strings.your_response_will_not_be_associated_with_any_identifying_information,
+                [
+                  { text: strings.Yes, onPress: () => this.onPressYesLARC() },
+                  { text: strings.No, onPress: () => this.onPressNoLARC(), style: 'cancel' }
+                ]
+              );
+            }
+
+    onPressOkay= () => {
+        RNRestart.Restart();
+    }
+
+    onPressCancel= () => {
+        console.log('cancel pressed');
+    }
+
+    onPressYesLARC= () => {
+        Alert.alert(
+            strings.if_youre_finished_viewing_your_results_and_you_dont_wish_to_receive_them_by_email_tap_okay_to_exit_t,
+            strings.your_email_address_will_not_be_saved_and_the_methods_selected_for_you_will_not_be_connected_to_any_i,
+            [
+              { text: strings.Okay, onPress: () => this.onPressOkay() },
+            ]
+          );
+    }
+
+    onPressNoLARC= () => {
+        Alert.alert(
+            strings.if_youre_finished_viewing_your_results_and_you_dont_wish_to_receive_them_by_email_tap_okay_to_exit_t,
+            strings.your_email_address_will_not_be_saved_and_the_methods_selected_for_you_will_not_be_connected_to_any_i,
+            [
+              { text: strings.Okay, onPress: () => this.onPressOkay() },
+              { text: strings.Cancel, onPress: () => this.onPressCancel(), style: 'cancel' }
+            ]
+          );
+    }
 
         DismissKeyboard= () => {
             Keyboard.dismiss(); 

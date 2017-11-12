@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 
     titleViewStyle: {
         paddingTop: scale(10),
-        backgroundColor: '#000'
+        //backgroundColor: '#000'
     },
 
     titleStyle: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
 
     startTextViewStyle: {
-        backgroundColor: '#000',
+        //backgroundColor: '#000',
         marginBottom: scale(8),
         marginLeft: scale(8),
         marginRight: scale(8)
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     },
 
     logoViewStyle: {
-        backgroundColor: '#000',
+        //backgroundColor: '#000',
         justifyContent: 'center',
         marginLeft: scale(8),
         marginRight: scale(8),
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     },
 
     cathyViewStyle: {
-        backgroundColor: '#000',
+        //backgroundColor: '#000',
         justifyContent: 'center',
         marginLeft: scale(8),
         marginRight: scale(8),
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         },
 
     disclaimerTextViewStyle: {
-        backgroundColor: '#000',
+        //backgroundColor: '#000',
         marginLeft: scale(8),
         marginRight: scale(8),
     },

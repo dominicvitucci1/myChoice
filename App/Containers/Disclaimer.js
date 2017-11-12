@@ -1,16 +1,41 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { ReactNativeAudioStreaming } from 'react-native-audio-streaming';
+import Tts from 'react-native-tts';
+import Icon from 'react-native-vector-icons/Entypo';
 import { strings } from '../Utils/Strings';
 import { scale, moderateScale, verticalScale } from '../Utils/scaling';
+
+const url = 'https://firebasestorage.googleapis.com/v0/b/mychoice-f9186.appspot.com/o/Disclaimer.mp3?alt=media&token=6ff105fb-cd0c-4435-93ce-69d204088d8d';
 
 
 class Disclaimer extends Component {
 
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#CCCC66',
-            }
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        return {
+            headerRight: <Icon.Button
+            name='sound'
+            backgroundColor='transparent'
+            onPress={() => { params.onPressSound(); }}
+            />,
+             headerStyle: {
+                backgroundColor: '#CCCC66',
+                }
+        };          
       };
+
+      componentDidMount() {
+        this.props.navigation.setParams({ onPressSound: this.onPressSound });
+      }
+
+      onPressSound= () => {
+        if (strings.getLanguage() === 'en') {
+            Tts.speak(strings.this_application_app_does_not_provide_specific_medical_advice_and_does_not_endorse_any_medical_or_pr);
+        } else if (strings.getLanguage() === 'es') {
+            ReactNativeAudioStreaming.play(url, { showIniOSMediaCenter: true, showInAndroidNotifications: true });              
+        }     
+      }
 
     render() {
         return (
