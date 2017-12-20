@@ -38,12 +38,14 @@
 		B3FFEF0A96A3445F8338EB88 /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 368B353FD429476AA11F2CDB /* libFastImage.a */; };
 		B60DB99F1FA9588300AA77B4 /* libStreamingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DB99E1FA9582E00AA77B4 /* libStreamingKit.a */; };
 		BE453A3F991044F28CD3C3AB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5CA451CEE40426CBCEF0BF1 /* EvilIcons.ttf */; };
+		C7404B107E8D4371B8EAE1B3 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF886D1273745EA9A1115B2 /* libCodePush.a */; };
 		C7A58287F2514F77BF0C751B /* libRNAudioStreamer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC92AAFF1E24DA98AE1FDD8 /* libRNAudioStreamer.a */; };
 		CE1A0B1263224262824F207E /* libReactNativeAudioStreaming.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02648539BC2A4B67812E9A18 /* libReactNativeAudioStreaming.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		D015AE650BB94730B2C356C0 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F32CAE524C74BC6A747E442 /* libRNI18n.a */; };
 		E8C94BFB065D4C8FBF08D573 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07AF6E4ED8B54CCD9D1AEF24 /* MaterialIcons.ttf */; };
 		EB31A91A8C794F2BAF1907F1 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F6FD1019AF24D5999A90C75 /* libRNVectorIcons.a */; };
 		ECC19F0D827D4D4B9482D059 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC5F7A29B5F1428A94CF2144 /* Foundation.ttf */; };
+		F2748552EC82449D8BA18698 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D4DB2F805C43D7B9865D2F /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -334,6 +336,20 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		B6B9989F1FE3601500D48129 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3A7FE94F22A48FE943B53CA /* CodePush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = CodePush;
+		};
+		B6B998A11FE3601500D48129 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3A7FE94F22A48FE943B53CA /* CodePush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F886647B1F4ADB500036D01B;
+			remoteInfo = "CodePush-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -366,6 +382,7 @@
 		368B353FD429476AA11F2CDB /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
 		3E6A10E22D4E4FC5BF386F2E /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		421C4D06EE854CBC990DB775 /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
+		54D4DB2F805C43D7B9865D2F /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5A5997DD197D408A9389A3E2 /* libRCTRestart.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTRestart.a; sourceTree = "<group>"; };
 		5B327AAE4BDB4F229070FB98 /* TextToSpeech.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TextToSpeech.xcodeproj; path = "../node_modules/react-native-tts/ios/TextToSpeech.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -379,6 +396,7 @@
 		88CAF7DAD31342BC8758800C /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		8E3A2A5DA34545F68387DE3F /* RNAudioStreamer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAudioStreamer.xcodeproj; path = "../node_modules/react-native-audio-streamer/ios/RNAudioStreamer.xcodeproj"; sourceTree = "<group>"; };
 		9FC92AAFF1E24DA98AE1FDD8 /* libRNAudioStreamer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudioStreamer.a; sourceTree = "<group>"; };
+		A3A7FE94F22A48FE943B53CA /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		AC5F7A29B5F1428A94CF2144 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		B60DB9961FA9582E00AA77B4 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = "../node_modules/react-native-audio-streaming/ios/Pods/Pods.xcodeproj"; sourceTree = "<group>"; };
 		C16EB536B2394EFAA74C908B /* libReactNativeLocalization.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeLocalization.a; sourceTree = "<group>"; };
@@ -386,6 +404,7 @@
 		D5CA451CEE40426CBCEF0BF1 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		E0545AA98E764FCCBB0BB653 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E490BDE86C7741CBAE07EC83 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		EDF886D1273745EA9A1115B2 /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		FE4FE42DA7AA4417816EC0E5 /* ReactNativeAudioStreaming.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeAudioStreaming.xcodeproj; path = "../node_modules/react-native-audio-streaming/ios/ReactNativeAudioStreaming.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -422,6 +441,8 @@
 				C7A58287F2514F77BF0C751B /* libRNAudioStreamer.a in Frameworks */,
 				CE1A0B1263224262824F207E /* libReactNativeAudioStreaming.a in Frameworks */,
 				228DD62DAC344D269F5A0EB7 /* libTextToSpeech.a in Frameworks */,
+				C7404B107E8D4371B8EAE1B3 /* libCodePush.a in Frameworks */,
+				F2748552EC82449D8BA18698 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +618,7 @@
 				8E3A2A5DA34545F68387DE3F /* RNAudioStreamer.xcodeproj */,
 				FE4FE42DA7AA4417816EC0E5 /* ReactNativeAudioStreaming.xcodeproj */,
 				5B327AAE4BDB4F229070FB98 /* TextToSpeech.xcodeproj */,
+				A3A7FE94F22A48FE943B53CA /* CodePush.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -619,6 +641,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				4BD9C05F57134A0288194CF9 /* Resources */,
 				B67C124F1FAAA0C10008AF9D /* Recovered References */,
+				AB34817F860A47D397D91479 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -631,6 +654,14 @@
 				00E356EE1AD99517003FC87E /* myChoiceContraceptionTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AB34817F860A47D397D91479 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54D4DB2F805C43D7B9865D2F /* libz.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B60DB9651FA9580300AA77B4 /* Products */ = {
@@ -718,8 +749,18 @@
 				9FC92AAFF1E24DA98AE1FDD8 /* libRNAudioStreamer.a */,
 				02648539BC2A4B67812E9A18 /* libReactNativeAudioStreaming.a */,
 				6C26A3D2ECFB49F0960A1F50 /* libTextToSpeech.a */,
+				EDF886D1273745EA9A1115B2 /* libCodePush.a */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B6B9989B1FE3601400D48129 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6B998A01FE3601500D48129 /* libCodePush.a */,
+				B6B998A21FE3601500D48129 /* libCodePush.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -799,6 +840,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = B6B9989B1FE3601400D48129 /* Products */;
+					ProjectRef = A3A7FE94F22A48FE943B53CA /* CodePush.xcodeproj */;
+				},
 				{
 					ProductGroup = B63C1C2C1F91731600CCD960 /* Products */;
 					ProjectRef = 421C4D06EE854CBC990DB775 /* FastImage.xcodeproj */;
@@ -1169,6 +1214,20 @@
 			remoteRef = B63C1C661F91731600CCD960 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B6B998A01FE3601500D48129 /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = B6B9989F1FE3601500D48129 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B6B998A21FE3601500D48129 /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = B6B998A11FE3601500D48129 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1281,12 +1340,14 @@
 					"$(SRCROOT)/../node_modules/react-native-audio-streamer/ios/RNAudioStreamer/**",
 					"$(SRCROOT)/../node_modules/react-native-audio-streaming/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = myChoiceContraceptionTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1325,12 +1386,14 @@
 					"$(SRCROOT)/../node_modules/react-native-audio-streamer/ios/RNAudioStreamer/**",
 					"$(SRCROOT)/../node_modules/react-native-audio-streaming/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = myChoiceContraceptionTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1369,6 +1432,7 @@
 					"$(SRCROOT)/../node_modules/react-native-audio-streamer/ios/RNAudioStreamer/**",
 					"$(SRCROOT)/../node_modules/react-native-audio-streaming/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = myChoiceContraception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1405,6 +1469,7 @@
 					"$(SRCROOT)/../node_modules/react-native-audio-streamer/ios/RNAudioStreamer/**",
 					"$(SRCROOT)/../node_modules/react-native-audio-streaming/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = myChoiceContraception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

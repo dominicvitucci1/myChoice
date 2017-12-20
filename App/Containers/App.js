@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import codePush from 'react-native-code-push';
 import '../I18n/I18n'; // keep before RootContainer
 import RootContainer from './RootContainer';
 import createStore from '../Redux';
@@ -17,7 +18,6 @@ const store = createStore();
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
@@ -27,5 +27,8 @@ class App extends Component {
   }
 }
 
-export default App
-;
+const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
+
+App = codePush(codePushOptions)(App);
+
+export default App;

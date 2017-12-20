@@ -26,8 +26,8 @@ const AppNavigator = StackNavigator({
     screen: HomeContainer
   },
 
-  Disclaimer: { 
-    screen: Disclaimer 
+  Disclaimer: {
+    screen: Disclaimer
   },
 
   ThreeChoice: {
@@ -50,7 +50,7 @@ const AppNavigator = StackNavigator({
   },
   QuestionsView: {
     screen: QuestionsView
-  }, 
+  },
   QuestionsMedView: {
     screen: QuestionsMedView
   },
@@ -62,14 +62,13 @@ const AppNavigator = StackNavigator({
   },
   EmailView: {
     screen: EmailView
-  }, 
+  },
   InfoView: {
     screen: InfoView
-  }, 
+  },
   LARCOptionsView: {
     screen: LARCOptionsView
   }
-
 });
 
 // export const Root = StackNavigator({
@@ -87,7 +86,6 @@ const AppNavigator = StackNavigator({
 // });
 
 class RootContainer extends Component {
-
   componentWillMount() {
     firebase.initializeApp({
       apiKey: 'AIzaSyAp0GTjONAiN8RiGHtk9KET-lMhiK01mqk',
@@ -98,34 +96,45 @@ class RootContainer extends Component {
       messagingSenderId: '429346895811'
     });
 
-    firebase.auth().signOut().then(() => {
-      console.log('Signed Out');
-      firebase.auth().signInAnonymously().catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-      });
-    }, (error) => {
-      console.error('Sign Out Error', error);
-    });
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        () => {
+          console.log('Signed Out');
+          firebase
+            .auth()
+            .signInAnonymously()
+            .catch(error => {
+              // Handle Errors here.
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode + errorMessage);
+            });
+        },
+        error => {
+          console.error('Sign Out Error', error);
+        }
+      );
 
-
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
         const uid = user.uid;
-        console.log(uid);      
+        console.log(uid);
         global.userID = uid;
-        return firebase.database().ref('/SendGridKey').once('value').then((snapshot) => {
-          const key = (snapshot.val()) || 'Error';
-          global.key = String(key);
-        });
+        return firebase
+          .database()
+          .ref('/SendGridKey')
+          .once('value')
+          .then(snapshot => {
+            const key = snapshot.val() || 'Error';
+            global.key = String(key);
+          });
       }
-        // User is signed out.
+      // User is signed out.
     });
   }
-  
 
   componentDidMount() {
     if (!ReduxPersist.active) {
@@ -134,9 +143,7 @@ class RootContainer extends Component {
   }
 
   render() {
-    return (
-      <AppNavigator />
-    );
+    return <AppNavigator />;
   }
 }
 
@@ -144,6 +151,4 @@ const mapStateToDispatch = dispatch => ({
   startup: () => dispatch(StartupActions.startup())
 });
 
-
 export default connect(null, mapStateToDispatch)(RootContainer);
-

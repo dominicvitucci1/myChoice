@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">myChoiceContraception</string>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">943cvYWNfNvLCNi80fFOTDDLauZ1defc0d04-22ad-4c8f-8213-2ac1bdb5ddc8</string>
+    <string name="app_name">Navigating Contraception</string>
 </resources>

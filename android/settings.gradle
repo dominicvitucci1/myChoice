@@ -1,4 +1,6 @@
 rootProject.name = 'myChoiceContraception'
+include ':react-native-code-push'
+project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
 include ':react-native-tts'
 project(':react-native-tts').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tts/android')
 include ':react-native-audio-streaming'
